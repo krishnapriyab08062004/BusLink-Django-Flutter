@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "726156054983",
+    "project_id": "buslink-7d38b",
+    "storage_bucket": "buslink-7d38b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726156054983:android:349aec65667fa8de2409e2",
+        "android_client_info": {
+          "package_name": "com.example.projectmain"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApOpybhjNDRqEs2tGr-sId069lGrIEHlo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
