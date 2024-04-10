@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="">
+        {% csrf_token %}
+<table border="2" align="center">
+    <tr>
+        <td>District</td>
+      
+  
+
+    <td><select name="seldistrict" id="">
+        <option>--select--</option>
+        {% for i in district %}
+        <option 
+        {% if i.id == place_data.district_id %}
+        selected
+        {% endif %}
+        value="{{i.id}}">{{i.dis.district_name}}</option>
+        {% endfor %}
+    </select></td>
+</tr>
+    <tr>
+        <td>Place</td>
+        <td><input type="text" name="txtplace" value="{{place_data.place_name}}"></td>
+    </tr>
+   
+    
+    <tr>
+
+        <td><input type="submit" name="btnsub" value="Submit"></td>
+        <td><input type="reset" name="btncan" value="Cancel"></td>
+    </tr>
+
+</table>
+<br>
+<table border="2" align="center">
+    <tr>
+        <td>District Name</td>
+        <td>Place Name</td>
+        <td>Place Pincode</td>
+        <td>Action</td>
+    </tr>
+    {% for i in data  %}
+     <tr>
+        <td>{{i.dis_name.district_name}}</td>
+        <td>{{i.place.place_name}}</td>
+        <td>{{i.place.place_pin}}</td>
+        <td><a href="{% url 'webadmin:delete_place' i.id %}">Delete</a>
+            <a href="{% url 'webadmin:edit_place' i.id %}">Edit
+            </a></td>
+        
+     </tr>
+     {% endfor %}
+</table>
+</form>
+</body>
+</html>

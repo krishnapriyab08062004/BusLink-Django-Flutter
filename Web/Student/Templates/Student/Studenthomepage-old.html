@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4CAF50; /* Add your preferred background color */
+            padding: 10px;
+            color: white;
+        }
+
+        .profile-link {
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            border-radius: 50%; /* Make it circular */
+            overflow: hidden;
+            width: 40px; /* Adjust the width and height to your preference */
+            height: 40px;
+            margin-left: 10px; /* Add some spacing */
+        }
+
+        .profile-link img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover; /* Ensure the image covers the circle */
+        }
+
+        .main-content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Welcome {{ student.stu_name }}
+        <a class="profile-link" href="{% url 'webstudent:studentprofile' %}">
+            <!-- Replace the src attribute with your profile picture URL -->
+            <img src="{{student.stu_img }}" alt="Profile Picture">
+        </a>
+    </div>
+
+    <div class="main-content">
+        <!-- Your main content goes here -->
+        <a href="{% url 'webstudent:choosestop' %}">Choose Stop</a><br>
+        <a href="{% url 'webstudent:stucomplaint' %}">Complaints</a><br>
+        <a href="{% url 'webstudent:stufeedback' %}">Feedbacks</a><br>
+        <a href="{% url 'webstudent:payment_card' %}">Payment Card</a>
+
+    </div>
+</body>
+</html>

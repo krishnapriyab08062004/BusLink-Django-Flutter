@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            text-align: center;
+            margin: 50px;
+        }
+
+        table {
+            width: 50%;
+            margin: auto;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <h2 class="mt-4 mb-4">Admin Profile</h2>
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="2">
+                    <img src="{{admin.admin_pic }}" class="img-fluid rounded-circle" alt="Profile Picture">
+                </td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Name:</td>
+                <td>{{admin.admin_name}}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Contact:</td>
+                <td>{{admin.admin_con}}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Email:</td>
+                <td>{{admin.admin_mail}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="{% url 'webadmin:edit_adminprofile' %}" class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <!-- Add Bootstrap JS and Popper.js scripts (optional but may be required for some Bootstrap features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+

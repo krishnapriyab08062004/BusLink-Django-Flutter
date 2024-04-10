@@ -1,0 +1,127 @@
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        body {
+    margin-top: 100px;
+}
+        </style>
+</head>
+<body>
+    <form method="post" action="">
+
+        {% csrf_token %}
+    <!------ Include the above in your HEAD tag ---------->
+    
+    <div class="container">
+        <div class="row">
+            <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <address>
+                            <strong>BPC College</strong>
+                            <br>
+                            Illikamukkada
+                            <br>
+                            Piravom
+                            <br>
+                            <abbr title="Phone">P:  </abbr> 0485 224 3474
+                        </address>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                        <p>
+                            <em>Date:{{ current_date }}</em>
+                        </p>
+                        <p>
+                            <em>Receipt #: 34522677W</em>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="text-center">
+                        <h1>Receipt</h1>
+                    </div>
+                    </span>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Route</th>
+                                <th>Stop</th>
+                                <th class="text-center">Month</th>
+                                <th class="text-center">Total</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr>
+                                {% for i in complist %}
+                                <td class="col-md-9"><em>{{ i.rdata.startroute_name }} - {{ i.rdata.endroute_name }}</em></td>
+                                <td class="col-md-1" style="text-align: center">{{ i.bdata.stop_name }}</td>
+                                <td class="col-md-1 text-center">{{ month }} </td>
+                                <td class="col-md-1 text-center">
+                                    {% if i.bdata.stop_no <= 5 %}
+                                    
+                                    {{ i.rdata.route_rate }}
+                                    <input type="hidden" name="route_rate" value="{{ i.rdata.route_rate }}">
+                                    {% else %}
+
+                                    {{ i.bdata.stop_no|sub:5|mul:100|add:i.rdata.route_rate}}
+                                    <input type="hidden" name="route_rate" value="{{  i.bdata.stop_no|sub:5|mul:100|add:i.rdata.route_rate }}">
+                                    {% endif %}
+                                </td>
+                                
+                            </td>
+                              
+                               
+                            </tr>
+                       
+                           
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                                <td class="text-center text-danger">
+                                    <h4><strong>
+                                        {% if i.bdata.stop_no <= 5 %}
+                                        {{ i.rdata.route_rate }}
+                            
+                                        {% else %}
+                                        {{ i.bdata.stop_no|sub:5|mul:100|add:i.rdata.route_rate}}
+                                               
+                                        {% endif %}
+                                    </strong></h4>
+                                    </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                   
+                     <!-- <a href="{% url 'webstudent:stupayment' %}?month={{ month }}&route_rate={{ route_rate }}" class="btn btn-success btn-lg btn-block">
+                        Pay Now <span class="glyphicon glyphicon-chevron-right"></span> -->
+                        <input type="submit" class="btn btn-success btn-lg btn-block" value="Pay Now">
+                    </a> 
+                </div>
+            </div>
+        </div>
+{% if amount %}
+<script>
+    alert('{{amount}}')
+    alert('{{month}}')
+    window.location="/wstudent/stupayment/?amount={{amount}}&month={{month}}"
+</script>
+{% endif %}
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </form>
+</body>
+</html>

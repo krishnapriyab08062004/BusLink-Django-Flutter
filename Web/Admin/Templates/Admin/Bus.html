@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table border="2">
+        <tr>
+            <td>Bus Number</td>
+            <td><input type="text" name="txtbusno" id="" value="{{routes.bus_regno}}"></td>
+      </tr>
+        <tr>
+              <td>Bus Capacity</td>
+              <td><input type="text" name="txtcapacity" id="" value="{{routes.bus_capacity}}"></td>
+        </tr>
+        <tr>
+            <td>Bus Image</td>
+            <td><input type="file" name="txtbimage" value="{{routes.bus_image}}" ></td>
+            
+      </tr>
+      <tr>
+        <td>Bus Starting Time</td>
+        <td><input type="time" name="txtbtime" id="" value="{{routes.bus_startingtime}}"></td>
+  </tr>
+        <tr>
+            <td colspan="2" align="center"> <input type="submit" value="Submit" name="btnsub"></td>
+           
+        </tr>
+    </table>
+<br>
+<br>
+    <table border=""2"">
+    <tr>
+        <td>Bus Number</td>
+        <td>Bus Capacity</td>
+        <td>Bus Image</td>
+        <td>Bus Starting Time</td>
+        <td>Action</td>
+    </tr>
+    {% for i in bus %}
+    <tr>
+        <td>{{i.bo.bus_regno}}</td>
+        <td>{{i.bo.bus_capacity}}</td>
+        <td><img src="{{i.bo.bus_image}}" width="100px" height="150px"></td>
+        <td>{{i.bo.bus_startingtime}}</td>
+        <td><a href="{% url 'webadmin:delete_bus' i.id %}">Delete</a>
+        <a href="{% url 'webadmin:edit_bus' i.id %}">Edit</a></td>
+  
+      </tr>
+    {% endfor %}
+    <table>
+
+    </table>
+   
+   </form>
+    
+</body>
+</html>

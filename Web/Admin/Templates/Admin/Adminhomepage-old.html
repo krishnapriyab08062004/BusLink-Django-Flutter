@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<form action="">
+    {% csrf_token %}
+<body>
+    Welcome{{admin.admin_name}}<br>
+
+   
+    <a href="{% url 'webadmin:dep' %}">Department</a><br>
+ 
+    <a href="{% url 'webadmin:course' %}">Course</a><br>
+
+    <a href="{% url 'webadmin:place' %}">Place<br></a>
+    <a href="{% url 'webadmin:district' %}">District</a><br>
+
+    <a href="{% url 'webadmin:route' %}">Route</a><br>
+    <a href="{% url 'webadmin:stop' %}">Stop</a><br>
+    <a href="{% url 'webadmin:adminprofile' %}">Profile</a><br>
+    <a href="{% url 'webadmin:bus' %}">Add Bus</a><br>
+    <a href="{% url 'webadmin:verifystudent' %}">Verify Student</a><br>
+    <a href="{% url 'webadmin:verifydriver' %}">Verify Driver</a><br>
+    <a href="{% url 'webadmin:changerequest' %}"> Accept Route Chnage Request </a>
+    <br>
+    <a href="{% url 'webadmin:viewcomplaints' %}">View Complaints</a><br>
+    <a href="{% url 'webadmin:viewfeedbacks' %}">View Feedbacks</a><br>
+
+
+
+  
+</body>
+</form>
+</html>

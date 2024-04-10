@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="">
+        {% csrf_token %}
+
+       
+            
+        <table border="2" align="center">
+            <tr>
+                <td>Bus</td>
+                <td><select name="selbus" id="">
+                    <option>--select--</option>
+                   
+                    {% for i in bus %}
+                        <option 
+                      
+                        value="{{i.id}}">{{i.bus.bus_regno}}</option>
+                    {% endfor %}
+
+
+                </select></td>
+            </tr>
+            <tr>
+                <td>Driver</td>
+                <td><select name="seldriver" id="">
+                    <option>--select--</option>
+                    {% if driver %}
+                    {% for i in driver %}
+                        <option 
+                       
+                        value="{{i.id}}">{{i.driver.driver_name}}</option>
+                    {% endfor %}
+                    {% endif %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>Route</td>
+                <td><select name="selroute" id="">
+                    <option>--select--</option>
+                    {% if route %}
+                    {% for i in route %}
+                        <option 
+                       
+                        value="{{i.id}}">{{i.route.startroute_name}}-{{i.route.endroute_name}}</option>
+                    {% endfor %}
+                    {% endif %}
+                    
+                </select></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="btnsub" value="Submit"></td>
+                <td><input type="reset" name="btncan" value="Cancel"></td>
+            </tr>
+        </table>
+       
+    </form>
+    <br>
+    <table border="2" align="center">
+        <tr>
+            <td>Bus Number</td>
+            <td>Driver Name</td>
+            <td>Route Name</td>
+        </tr>
+        {% if data %}
+        {% for i in data %}
+        <tr>
+            <td>{{ i.bus_name }}</td>
+            <td>{{ i.driver_name }}</td>
+            <td>{{ i.route_name.startroute_name }}-{{ i.route_name.endroute_name }}</td>
+        </tr>
+      {% endfor %}
+      {% endif %}
+    </table>
+</body>
+</html>
