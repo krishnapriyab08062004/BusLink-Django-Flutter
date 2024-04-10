@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop</title>
+</head>
+<body>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table border="2" align="center">
+            <tr>
+                <td>Route</td>
+                <td>
+                    <select name="selstop" id="">
+                        <option>--select--</option>
+                        {% for i in route %}
+                        <option 
+                            {% if i.place.route_id == route.id %}
+                                selected
+                            {% endif %}
+                            value="{{ i.id }}">{{ i.dis.startroute_name }} - {{ i.dis.endroute_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>Stop Name</td>
+                <td><input type="text" name="txtstp" value=""></td>
+            </tr>
+            <tr>
+                <td>Stop Number</td>
+                <td><input type="text" name="txtstpno" value=""></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="btnsub" value="Submit"></td>
+                <td><input type="reset" name="btncan" value="Cancel"></td>
+            </tr>
+        </table>
+    </form>
+
+    <br>
+
+    <table border="2" align="center">
+        <tr>
+            <td>Stop Name</td>
+            <td>Stop Number</td>
+            <td>Route</td>
+            <td>Action</td>
+        </tr>
+        {% for i in stop1 %}
+            <tr>
+                <td>{{ i.place.stop_name }}</td>
+                <td>{{ i.place.stop_no }}</td>
+                <td>{{ i.route_name.startroute_name }} - {{ i.route_name.endroute_name }}</td>
+                <td>
+                    <a href="{% url 'webadmin:delete_stop' i.id %}">Delete</a>
+                    <!-- Add an edit link if needed -->
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

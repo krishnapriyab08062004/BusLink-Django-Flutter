@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Card</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container" id="pri">
+        <h1>Payment Card {{ year }}</h1>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Sl No</th>
+                    <th>Month Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cont in context %} 
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ cont.month }}</td>
+                        <td>
+                            {% if cont.status == '0' %}
+                           
+                                <a href="{% url 'webstudent:paymentinfo' %}?month={{ cont.month }}">Pay</a>
+                             
+                        
+                            {% elif cont.status == '1' %}
+                                Paid
+                            {% elif cont.status == '2' %}
+                                Yet To Be Paid
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                <tr>
+                    <td></td>
+                    <td>Total Due:</td>
+                    {% if total_due == 0 %}
+                    <td>{{ year }} Payment Completed <button onclick="printDiv('pri')">Print</button></td>
+                    {% else %}
+                    <td>{{ total_due }}</td>
+                    {% endif %}
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+</body>
+
+</html>

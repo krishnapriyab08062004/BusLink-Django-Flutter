@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            text-align: center;
+            margin: 50px;
+        }
+
+        table {
+            width: 50%;
+            margin: auto;
+        }
+
+        .profile-pic {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2 class="mt-4 mb-4">Student Profile</h2>
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="2">
+                    <img src="{{ student.stu_img }}" class="profile-pic img-fluid" alt="Profile Picture">
+                </td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Name:</td>
+                <td>{{ student.stu_name }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Contact:</td>
+                <td>{{ student.stucon }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Email:</td>
+                <td>{{ student.stu_mail }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="btn-group">
+                    <a href="{% url 'webstudent:changepassword' %}" class="btn btn-primary">Change Password</a>
+                    <a href="{% url 'webstudent:edit_studentprofile' %}" class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <!-- Add Bootstrap JS and Popper.js scripts (optional but may be required for some Bootstrap features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

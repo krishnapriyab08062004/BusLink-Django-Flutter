@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Details</title>
+</head>
+<body>
+    <form action="">
+        {% csrf_token %}
+      {% for i in data %}
+          {{ i.bdata.bus_capacity }} <br>
+          <img src="{{ i.bdata.bus_image }}"  alt="Profile Picture"> <br>
+          {{ i.bdata.bus_startingtime }}
+
+             {% endfor %}
+             <a href="{% url 'webdriver:qrcode' %}" download="">
+                <img src="{% url 'webdriver:qrcode' %}" alt="QR Code">
+            </a>
+    </form>
+</body>
+</html>

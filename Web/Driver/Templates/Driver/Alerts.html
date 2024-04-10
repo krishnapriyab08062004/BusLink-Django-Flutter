@@ -1,0 +1,80 @@
+{% extends 'Driver/Driverhead.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Alerts</title>
+    <style>
+        /* Custom CSS styles can be added here */
+        .container {
+            margin-top: 20px;
+        }
+        .form-table {
+            width: 80%;
+            margin: auto;
+        }
+        .btn-submit {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 class="text-center">Give Your Alerts Here...</h3>
+        <form action="" method="post" class="form-table">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="route" class="form-label">Route:   </label>
+                
+                    {% for i in complist1 %}
+                    {{ i.bdata.startroute_name }}-{{ i.bdata.endroute_name }}
+
+                    {% endfor %}
+             
+            </div>
+            <div class="mb-3">
+                <label for="txtdetail" class="form-label">Alert Detail:</label>
+                <textarea name="txtdetail" id="txtdetail" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="alert_datetime" class="form-label">Alert Datetime:</label>
+                 {{ alert_datetime }}
+            </div>
+            <div class="text-center">
+                <input type="submit" name="btnsub" value="Submit" class="btn btn-primary btn-submit">
+                <input type="Reset" name="btncan" value="Cancel" class="btn btn-primary btn-submit">
+            </div>
+        </form>
+        
+        <br><br>
+        <h3 class="text-center">Your Previous Alerts</h3>
+        <br>
+        <table class="table table-bordered table-hover form-table">
+            <thead class="table-dark">
+            <tr>
+                <th>Sl.No</th>
+                <th>Alert Given</th>
+                <th>Alert DateTime</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.comp_data2.alert_detail }}</td>
+                    <td>{{ i.comp_data2.alert_datetime }}</td>
+                    <td><a href="{% url 'webdriver:delete_alert' i.id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+{% endblock content %}

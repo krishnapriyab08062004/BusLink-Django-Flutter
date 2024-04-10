@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+    <table border="2" rules="none">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="txtname" id="txtname"></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td><input type="text" name="txtcon" id="txtcon"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="mail" name="txtmail" ></td>
+        </tr>
+       
+        <tr>
+            <td>Profile Picture</td>
+            <td><input type="file" name="txtimage" ></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="txtpass" ></td>
+        </tr>
+        <tr>
+        
+            <td colspan="2" align="center"><input type="submit" name="btnsub" value="Submit"></td>
+        </tr>
+    </table>
+    {% if msg %}
+    <script>
+        alert("{{msg}}")
+
+    </script>
+    {% endif %}
+    
+    </form>
+</body>
+</html>
